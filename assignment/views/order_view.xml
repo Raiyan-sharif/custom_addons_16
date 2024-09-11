@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_pivot" model="ir.ui.view">
+        <field name="name">sale.order.pivot</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <pivot string="Orders Pivot">
+                <field name="date_order"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="amount_total"/>
+            </pivot>
+        </field>
+    </record>
+
+
+    <record id="view_order_calendar" model="ir.ui.view">
+        <field name="name">sale.order.calendar</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <calendar string="Order Calendar">
+                <field name="scheduled_date"/>
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+</odoo>
+

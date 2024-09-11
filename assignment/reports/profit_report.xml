@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="report_profit_document" model="ir.actions.report">
+        <field name="name">Profit Report</field>
+        <field name="model">product.product</field>
+        <field name="report_type">qweb-pdf</field> <!-- Changed to a valid type -->
+        <field name="report_file">custom_addons.profit_report</field>
+        <field name="report_name">custom_addons.profit_report</field>
+        <field name="attachment_use">False</field>
+    </record>
+</odoo>

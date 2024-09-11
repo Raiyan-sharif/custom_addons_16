@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_order_summary">
+        <t t-call="web.html_container">
+            <t t-foreach="orders" t-as="order">
+                <div>
+                    <h3>Order Summary</h3>
+                    <p>Order ID: <t t-esc="order.id"/></p>
+                    <p>Products Ordered: <t t-esc="order.products_ordered"/></p>
+                    <p>Products Received: <t t-esc="order.products_received"/></p>
+                    <p>Payments Made: <t t-esc="order.payments_made"/></p>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+
+<!-- <template id="profit_report">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t t-call="web.external_layout">-->
