@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Action for Assignment2Invoice (for both Tree and Form views) -->
+    <record id="action_assignment2_invoice" model="ir.actions.act_window">
+        <field name="name">Assignment2 Invoices</field>
+        <field name="res_model">assignment2.invoice</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_create">
+                Create the first invoice
+            </p>
+        </field>
+    </record>
+
+    <!-- Main Menu Item -->
+    <menuitem id="menu_assignment2_invoice_root" name="Assignment2 Invoices" sequence="10"/>
+
+    <!-- Submenu for Assignment2Invoice (List view) -->
+    <menuitem id="menu_assignment2_invoice" name="Invoices"
+              parent="menu_assignment2_invoice_root"
+              action="action_assignment2_invoice" sequence="10"/>
+</odoo>

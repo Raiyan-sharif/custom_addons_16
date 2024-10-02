@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="assignment2_invoice_report_template">
+        <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="10"/>
+            <t t-call="web.basic_layout">
+                <div class="page" style="page-break-inside:auto;">
+
+                    <t t-foreach="docs" t-as="doc">
+                        <div style="display: flex; justify-content: space-between; align-items: top; width: 100%;">
+                            <div style="flex: 1; display: flex; align-items: center;">
+                                <img t-if="doc.payer_name.company_id.logo" t-att-src="image_data_uri(doc.payer_name.company_id.logo)"
+                                     alt="Company Logo" style="max-height: 45px;" />
+                            </div>
+                            <div style="flex: 1; text-align: center; display: flex; justify-content: center; align-items: top;">
+                                <h2 style="margin: 0;">Invoice</h2>
+                            </div>
+                            <div style="flex: 1; text-align: right; display: flex; justify-content: flex-end; align-items: top;">
+                                <span>1(1)</span>
+                            </div>
+                        </div>
+
+
+                        <!-- First Table: Invoicing Address and Invoice Information -->
+                        <table style="width: 100%; margin-top: 20px;">
+                            <tr>
+                                <!-- Invoicing Address (Row Span 3, Half Width) -->
+                                <td rowspan="6" style="width: 50%; vertical-align: top;">
+                                    <strong>Invoicing Address:</strong><br/>
+                                    <span t-esc="doc.invoicing_address"/>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <!-- Invoice Number -->
+                                <td style="width: 25%;"><strong>Invoice Number:</strong><br/><span t-esc="doc.invoice_number"/></td>
+                                <td><strong>Invoice Date:</strong> <br/> <span t-esc="doc.invoice_date"/></td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Decision Number:</strong> <br/> <span t-esc="doc.decision_number"/> </td>
+                                <td><strong>Date of Decision:</strong><br/><span t-esc="doc.date_of_decision"/></td>
+                            </tr>
+                            <tr>
+                                <td> </td>
+                                <td><strong>Due Date:</strong><br/><span t-esc="doc.due_date"/></td>
+                            </tr>
+
+                        </table>
+
+                        <!-- Tax Type, Total Amount, Declaration -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%;">
+                            <div style="flex: 1; display: flex; align-items: center;">
+                                <div style="flex: 1; display: flex; align-items: center;">
+                                    <strong>Tax Type:</strong><br/><span t-esc="doc.tax_type"/>
+                                </div>
+                                <div style="flex: 1; text-align: right; display: flex; justify-content: flex-end; align-items: center;">
+                                    <strong>Total:</strong><br/><span t-esc="doc.amount_total"/>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: flex-end; padding: 5px;">
+                                <div style="flex: 1; text-align: right; display: flex; justify-content: flex-end; align-items: center;">
+                                    <strong>Total amount payable:</strong><span t-esc="doc.amount_total"/>
+                                </div>
+                            </div>
+                            <div style="padding: 5px;">
+                                <strong>Declaration:</strong> <br/><span t-esc="doc.declaration"/>
+                            </div>
+                        </div>
+
+
+                        <!-- Footer Table: Recipient and Payer Information -->
+                        <hr/>
+                        <br/>
+                        <div style="width: 100%; margin-top: 20px;">
+
+                            <div style="border-top: 1px dashed #000; margin: 20px 0;"/>
+
+                        </div>
+                        <table style="width: 100%; margin-top: 40px; border-top: 1px solid black;">
+                            <tr>
+                                <td><strong>Recipient Account Number:</strong></td>
+                                <td>IBAN<br/><span t-esc="doc.recipient_account_number"/></td>
+                                <td>FI<br/>FI</td>
+                                <td colspan="2"><strong>BIC:</strong><br/><span t-esc="doc.bic"/></td>
+
+                            </tr>
+                            <tr>
+                                <td><strong>Recipient:</strong></td>
+                                <td colspan="2">Customs<br/><span t-esc="doc.recipient_name"/></td>
+                                <td colspan="2"><strong>Invoice Number:</strong><br/><span t-esc="doc.invoice_number"/></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td rowspan="4"><strong>Payer's name and address</strong></td>
+                                <td colspan="2" rowspan="4"><span t-esc="doc.payer_name.name"/><br/><span t-esc="doc.payer_address"/></td>
+
+                                <td colspan="2">
+                                    User a reference number when paying<br/><br/>Virtual bar code<br/><span t-esc="doc.barcode_field"/>
+                                </td>
+
+
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <tr>
+                                        <td><strong>Reference Number:</strong></td>
+                                        <td><span t-esc="doc.reference_number"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Due Date:</strong> <span t-esc="doc.due_date"/></td>
+                                        <td>Euro <span t-esc="doc.amount_total"/></td>
+                                    </tr>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <div style="display: flex; justify-content: space-between; align-items: top; width: 100%;">
+                            <div style="flex: 1; display: flex; align-items: center;">
+                                <img t-att-src="'/report/barcode/?type=QR&amp;value=%s&amp;width=100&amp;height=100' % doc.barcode_field" alt="Barcode" style="width: 100px; height: 100px;" />
+                            </div>
+
+                            <!-- Text on the right -->
+                            <div style="flex: 1; text-align: right; display: flex; justify-content: flex-end; align-items: top;">
+                                The payment will be cleared for recipient in accordance with the General terms for payment transmission and only on the basis of the account number given by the payer.
+                            </div>
+                        </div>
+
+
+                    </t>
+                </div>
+            </t>
+
+        </t>
+    </template>
+</odoo>

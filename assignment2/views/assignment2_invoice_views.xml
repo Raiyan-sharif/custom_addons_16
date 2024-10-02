@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View for Assignment2Invoice -->
+    <record id="view_assignment2_invoice_form" model="ir.ui.view">
+        <field name="name">assignment2.invoice.form</field>
+        <field name="model">assignment2.invoice</field>
+        <field name="arch" type="xml">
+            <form string="Assignment2 Invoice">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="invoice_number"/>
+                            <field name="invoice_date"/>
+                            <field name="due_date"/>
+                            <field name="decision_number"/>
+                            <field name="date_of_decision"/>
+                            <field name="reference_number"/>
+                        </group>
+                        <group>
+                            <field name="invoicing_address"/>
+                            <field name="recipient_name"/>
+                            <field name="recipient_account_number"/>
+                            <field name="payer_name"/>
+                            <field name="payer_address"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="amount_total"/>
+                        <field name="tax_type"/>
+                        <field name="declaration"/>
+                    </group>
+                    <group>
+                        <field name="from_account_no"/>
+                        <field name="bic"/>
+                    </group>
+                    <group>
+                        <field name="barcode_field" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="signature"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree (List) View for Assignment2Invoice -->
+    <record id="view_assignment2_invoice_tree" model="ir.ui.view">
+        <field name="name">assignment2.invoice.tree</field>
+        <field name="model">assignment2.invoice</field>
+        <field name="arch" type="xml">
+            <tree string="Assignment2 Invoice List">
+                <field name="invoice_number"/>
+                <field name="invoice_date"/>
+                <field name="due_date"/>
+                <field name="recipient_name"/>
+                <field name="amount_total"/>
+                <field name="tax_type"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
